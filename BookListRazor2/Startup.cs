@@ -27,7 +27,9 @@ namespace BookListRazor2
             services.AddRazorPages();
             
             //HelloWorld services
-            services.AddTransient<HelloWorldService>(); //Create an instance everytime asked
+            //services.AddTransient<HelloWorldService>(); //Create a new instance everytime asked
+            //services.AddScoped<HelloWorldService>(); //Create one single instance for every web request
+            services.AddSingleton<HelloWorldService>(); //Create one single instance for entire application run
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
