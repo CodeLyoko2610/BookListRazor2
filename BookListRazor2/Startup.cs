@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BookListRazor2.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +36,15 @@ namespace BookListRazor2
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Middleware
+            app.Use(async (context, next) =>
+            {
+                context.Response.ContentType = "text/html";
+                await context
+                    .Response
+                    .WriteAsync("<html><h1>Handled by middleware</h1></html>");
+            });
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
