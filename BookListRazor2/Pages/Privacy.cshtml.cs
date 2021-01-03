@@ -11,14 +11,18 @@ namespace BookListRazor2.Pages
     public class PrivacyModel : PageModel
     {
         private readonly ILogger<PrivacyModel> _logger;
-
+        
+        public string UserName { get; private set; }
+        
         public PrivacyModel(ILogger<PrivacyModel> logger)
         {
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGet(string userName)
         {
+            //userName got from optional parameter of @page directive
+            UserName = userName;
         }
     }
 }
