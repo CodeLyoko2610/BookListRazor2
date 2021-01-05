@@ -72,12 +72,21 @@ namespace BookListRazor2
                     var name = context.Request.RouteValues["name"];
                     await context.Response.WriteAsync($"Hello, {name}!");
                 });
-
+                
                 //Map to files inside Pages directory
                 endpoints.MapRazorPages();
                 
-                //Controller
-                
+                //Conventional routing using controller
+                endpoints.MapControllerRoute(
+                    name: "another",
+                    pattern: "Home/Another",
+                    defaults: new {controller = "Home", action = "Another"}
+                );
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                );
+
             });
         }
     }
