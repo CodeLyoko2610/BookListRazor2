@@ -77,6 +77,7 @@ namespace BookListRazor2
                 endpoints.MapRazorPages();
                 
                 //Conventional routing using controller
+                //Default route
                 endpoints.MapControllerRoute(
                     name: "another",
                     pattern: "Home/Another",
@@ -87,6 +88,8 @@ namespace BookListRazor2
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                 );
 
+                //Map endpoint using Route attribute
+                endpoints.MapControllers();
             });
         }
     }
